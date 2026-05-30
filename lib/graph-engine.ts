@@ -114,7 +114,7 @@ export function createGraphEngine(svgEl: SVGSVGElement, callbacks: GraphCallback
     .data(links).join("path")
     .attr("class", (d) => "link " + d.kind)
     .attr("stroke", (d) => (d.kind === "belongs-to" && d.layer ? RISK[layerRiskOf(d.layer)].color : null))
-    .attr("stroke-opacity", (d) => (d.kind === "belongs-to" ? 0.22 : d.kind === "layer-chain" ? 0.5 : 0.3))
+    .attr("stroke-opacity", (d) => (d.kind === "belongs-to" ? 0.36 : d.kind === "layer-chain" ? 0.85 : 0.62))
     .attr("marker-end", (d) => (d.kind === "company-dep" ? "url(#arrow)" : null));
 
   // nodes
@@ -226,7 +226,7 @@ export function createGraphEngine(svgEl: SVGSVGElement, callbacks: GraphCallback
   function clearHighlight() {
     gNodes.selectAll<SVGGElement, GraphNode>("g.node").classed("faded", false).classed("hovered", false);
     gLinks.selectAll<SVGPathElement, GraphLink>("path.link").style("stroke-opacity", (d) =>
-      d.kind === "belongs-to" ? 0.22 : d.kind === "layer-chain" ? 0.5 : 0.3);
+      d.kind === "belongs-to" ? 0.36 : d.kind === "layer-chain" ? 0.85 : 0.62);
     applyFilterClasses();
   }
 

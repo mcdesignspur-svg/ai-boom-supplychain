@@ -76,7 +76,7 @@
   --grid-color:    rgba(120, 150, 200, 0.05);
   --node-rest:     #5A6573;
   --node-rest-ring:rgba(255,255,255,0.10);
-  --link:          rgba(150, 165, 190, 0.16);
+  --link:          rgba(168, 184, 210, 0.42);
   --shadow-panel:  -24px 0 60px rgba(0, 0, 0, 0.5);
   --logo-opacity:  1;
 }
@@ -98,7 +98,7 @@
   --grid-color:    rgba(0, 86, 198, 0.045);
   --node-rest:     #9aa1ad;
   --node-rest-ring:rgba(15,23,42,0.10);
-  --link:          rgba(40, 60, 100, 0.16);
+  --link:          rgba(40, 60, 100, 0.38);
   --shadow-panel:  -24px 0 60px rgba(0, 0, 0, 0.12);
   --logo-opacity:  1;
 }
@@ -147,9 +147,9 @@ button { font-family: inherit; }
 
 /* ── GRAPH ELEMENTS ─────────────────────────────────────────── */
 .link { stroke: var(--link); fill: none; transition: stroke-opacity var(--mc-dur-base) var(--mc-ease-std); }
-.link.layer-chain { stroke-width: 1.5; stroke-dasharray: 1 7; stroke-linecap: round; }
-.link.company-dep { stroke-width: 1; }
-.link.belongs-to  { stroke-width: 0.8; }
+.link.layer-chain { stroke-width: 2; stroke-dasharray: 1.5 6; stroke-linecap: round; }
+.link.company-dep { stroke-width: 1.4; }
+.link.belongs-to  { stroke-width: 1.1; }
 .link.dim { stroke-opacity: 0.18 !important; }
 
 .node { cursor: pointer; }
