@@ -4,14 +4,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Layout: two halves
 
+- **Repo root** — the **production app**: Next.js (App Router, TypeScript) + D3 (`app/`, `components/`, `lib/`), with real live stock quotes and a responsive/mobile layout, deployable on Vercel. This is where active development happens. See [README.md](README.md) for run/deploy details and the production architecture. The app is at the repo root (no `web/` subfolder) so Vercel auto-detects Next.js.
 - **[project/](project/)** — the original **design handoff bundle** from Claude Design (claude.ai/design): a static HTML/CSS/JS prototype. Treat this as the design source of truth / reference, not as code to ship.
-- **[web/](web/)** — the **production rebuild**: Next.js (App Router, TypeScript) + D3, with real live stock quotes and a responsive/mobile layout, deployable on Vercel. This is where active development happens. See [web/README.md](web/README.md) for run/deploy details and its own architecture notes.
 
 ## What this repo is
 
 The primary design is [project/AI Supply Chain Map.html](project/AI Supply Chain Map.html) — an interactive **force-directed graph of the AI hardware supply chain**: 8 layers (silicon → hyperscalers) and ~37 public companies, with risk coloring, filters, a detail panel, and live stock data. UI copy is in **Spanish**.
 
-The prototype used fully simulated financials; the `web/` rebuild pulls **real prices** for US-listed tickers via Finnhub and falls back to reference data for OTC names (see `web/lib/quotes-provider.ts`).
+The prototype used fully simulated financials; the production app pulls **real prices** for US-listed tickers via Finnhub and falls back to reference data for OTC names (see `lib/quotes-provider.ts`). The production code mirrors the prototype's `data → graph → ui` split as `lib/supply-chain-data.ts` → `lib/graph-engine.ts` → `components/` + `lib/use-quotes.ts`.
 
 ## Running the prototype
 

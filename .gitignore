@@ -1,9 +1,11 @@
 # OS
 .DS_Store
 
-# dependencies / build output (anywhere in the tree)
+# dependencies / build output (match at any depth)
 node_modules/
 .next/
+.pnp
+.pnp.*
 out/
 build/
 
@@ -11,7 +13,17 @@ build/
 .env
 .env*.local
 
-# misc
+# typescript / next
+next-env.d.ts
 *.tsbuildinfo
+
+# vercel
 .vercel
+
+# logs
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# certs
+*.pem
