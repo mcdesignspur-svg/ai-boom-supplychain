@@ -62,6 +62,19 @@ export interface QuotesResponse {
   asOf: string;
 }
 
+/* ── Company news (Finnhub /company-news) ───────────────────────── */
+export interface NewsItem {
+  headline: string;
+  source: string;
+  url: string;
+  /** Unix seconds. */
+  datetime: number;
+}
+
+export interface NewsResponse {
+  news: NewsItem[];
+}
+
 /* ── Graph (nodes + links) ──────────────────────────────────────── */
 
 export type GraphNode = (Layer | Company) & {

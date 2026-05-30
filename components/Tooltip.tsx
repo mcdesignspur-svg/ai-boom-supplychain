@@ -3,6 +3,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import type { Company, Layer, Quote } from "@/lib/types";
 import { RISK } from "@/lib/supply-chain-data";
 import { fmtChg, fmtPrice, hexA } from "@/lib/format";
+import CompanyLogo from "./CompanyLogo";
 
 interface TooltipProps {
   node: Layer | Company | null;
@@ -55,8 +56,13 @@ function CompanyTip({ company, quote }: { company: Company; quote: Quote | null 
   const up = changePct >= 0;
   return (
     <>
-      <div className="tt-name">{company.shortName}</div>
-      <div className="tt-meta">{company.ticker} · {company.exchange}</div>
+      <div className="tt-head">
+        <CompanyLogo companyId={company.id} name={company.shortName} size={24} />
+        <div>
+          <div className="tt-name">{company.shortName}</div>
+          <div className="tt-meta">{company.ticker} · {company.exchange}</div>
+        </div>
+      </div>
       <div className="tt-row">
         <span className="tt-price">{fmtPrice(price)}</span>
         <span className={"chg " + (up ? "up" : "down")}>{fmtChg(changePct)}</span>

@@ -464,6 +464,36 @@ button.meta-tag { cursor: pointer; display: inline-flex; align-items: center; ga
 }
 .offline-note .material-symbols-outlined { font-size: 15px; }
 
+/* ── COMPANY LOGO (Clearbit, with monogram fallback) ───────────── */
+.company-logo {
+  flex: none; border-radius: 10px; overflow: hidden;
+  background: #fff; display: grid; place-items: center;
+  border: 1px solid var(--border);
+}
+.company-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.company-logo.fallback {
+  background: var(--panel-bg-2); color: var(--ink-2);
+  font-weight: 800; font-size: 0.9em;
+}
+.panel-head-row { display: flex; align-items: center; gap: 12px; }
+.panel-head-row .company-logo { border-radius: 12px; }
+.panel-head-text { min-width: 0; }
+.tt-head { display: flex; align-items: center; gap: 9px; }
+.tt-head .company-logo { border-radius: 6px; }
+
+/* ── COMPANY NEWS ──────────────────────────────────────────────── */
+.news-list { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.news-item {
+  display: block; text-decoration: none;
+  background: var(--panel-bg-2); border: 1px solid var(--border);
+  border-radius: var(--mc-radius-md); padding: 11px 13px;
+  transition: border-color var(--mc-dur-fast) var(--mc-ease-std), transform var(--mc-dur-fast) var(--mc-ease-std);
+}
+.news-item:hover { border-color: var(--accent); transform: translateY(-1px); }
+.news-head { font-size: 13px; font-weight: 600; line-height: 1.35; color: var(--ink); }
+.news-meta { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); margin-top: 6px; }
+.news-empty { font-size: 12px; color: var(--ink-3); padding: 4px 0; }
+
 /* ── INTRO OVERLAY ──────────────────────────────────────────── */
 .intro {
   position: fixed; inset: 0; z-index: 90;

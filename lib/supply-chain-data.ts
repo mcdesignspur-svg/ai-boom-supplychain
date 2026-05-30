@@ -213,3 +213,42 @@ export const RISK: Record<RiskLevel, RiskMeta> = {
   MED:  { color: "#4C9BEC", label: "Riesgo medio",  glow: "rgba(76,155,236,0.50)" },
   LOW:  { color: "#6FB23A", label: "Riesgo bajo",   glow: "rgba(111,178,58,0.45)" },
 };
+
+/* ── Dominios para logos (Clearbit) ──────────────────────────────
+   Usados por <CompanyLogo>. Si Clearbit no tiene el logo (algunos
+   asiáticos), el componente cae a un monograma con la inicial. */
+export const COMPANY_DOMAINS: Record<string, string> = {
+  "shin-etsu": "shinetsu.co.jp",
+  "sumco": "sumcosi.com",
+  "wacker": "wacker.com",
+  "synopsys": "synopsys.com",
+  "cadence": "cadence.com",
+  "arm": "arm.com",
+  "siemens-eda": "siemens.com",
+  "asml": "asml.com",
+  "amat": "appliedmaterials.com",
+  "lam": "lamresearch.com",
+  "kla": "kla.com",
+  "tokyo-electron": "tel.com",
+  "tsmc": "tsmc.com",
+  "samsung": "samsung.com",
+  "intel": "intel.com",
+  "ase": "aseglobal.com",
+  "amkor": "amkor.com",
+  "sk-hynix": "skhynix.com",
+  "micron": "micron.com",
+  "nvidia": "nvidia.com",
+  "amd": "amd.com",
+  "foxconn": "foxconn.com",
+  "quanta": "quantatw.com",
+  "smci": "supermicro.com",
+  "vertiv": "vertiv.com",
+  "schneider": "se.com",
+  "eaton": "eaton.com",
+  "abb": "abb.com",
+  "modine": "modine.com",
+  "microsoft": "microsoft.com",
+  "amazon": "amazon.com",
+  "alphabet": "google.com",
+  "meta": "meta.com",
+};

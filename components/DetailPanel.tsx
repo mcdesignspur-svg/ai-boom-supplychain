@@ -1,11 +1,35 @@
 "use client";
 import { useEffect, useState } from "react";
 import { COMPANIES, LAYERS, RISK } from "@/lib/supply-chain-data";
-import type { Company, Layer, Quote } from "@/lib/types";
+import type { Company, Layer, NewsItem, Quote } from "@/lib/types";
 import { fmtCap, fmtChg, fmtPrice, hexA, sparkPath, sparkSeries } from "@/lib/format";
+import { useCompanyNews } from "@/lib/use-company-news";
+import CompanyLogo from "./CompanyLogo";
 
 const UP = "#3ECF8E";
 const DOWN = "#FF6B66";
+
+function newsAgo(unixSeconds: number): string {
+  const s = Math.max(0, Math.floor(Date.now() / 1000 - unixSeconds));
+  if (s < 3600) return "hace " + Math.max(1, Math.round(s / 60)) + "m";
+  if (s < 86400) return "hace " + Math.round(s / 3600) + "h";
+  return "hace " + Math.round(s / 86400) + "d";
+}
+
+function NewsList({ loading, news }: { loading: boolean; news: NewsItem[] }) {
+  if (loading) return <div className="news-empty">Cargando noticias…</div>;
+  if (!news.length) return <div className="news-empty">Sin noticias recientes.</div>;
+  return (
+    <div className="news-list">
+      {news.map((n, i) => (
+        <a key={n.url + i} className="news-item" href={n.url} target="_blank" rel="noopener noreferrer">
+          <div className="news-head">{n.headline}</div>
+          <div className="news-meta">{n.source} · {newsAgo(n.datetime)}</div>
+        </a>
+      ))}
+    </div>
+  );
+}
 
 interface DetailPanelProps {
   node: Layer | Company | null;
@@ -93,6 +117,7 @@ function CompanyPanel({ company, quote, onClose, onOpenLayer }: { company: Compa
   const changePct = quote.changePct;
   const up = changePct >= 0;
   const live = quote.live;
+  const { loading: newsLoading, news } = useCompanyNews(company.ticker, company.liquid);
 
   const series = sparkSeries(company.ticker + company.id, price, changePct);
   const sLo = Math.min(...series);
@@ -104,8 +129,13 @@ function CompanyPanel({ company, quote, onClose, onOpenLayer }: { company: Compa
     <>
       <div className="panel-top">
         <div>
-          <div className="panel-eyebrow">{company.ticker} · {company.exchange}</div>
-          <h2 className="panel-name">{company.shortName}</h2>
+          <div className="panel-head-row">
+            <CompanyLogo companyId={company.id} name={company.shortName} size={46} />
+            <div className="panel-head-text">
+              <div className="panel-eyebrow">{company.ticker} · {company.exchange}</div>
+              <h2 className="panel-name">{company.shortName}</h2>
+            </div>
+          </div>
           <div className="panel-meta">
             <span className="meta-tag">{company.name}</span>
           </div>
@@ -160,6 +190,12 @@ function CompanyPanel({ company, quote, onClose, onOpenLayer }: { company: Compa
         <p className="body">{company.role}</p>
         <div className="section-label">Sede</div>
         <p className="body" style={{ color: "var(--ink)" }}>{company.hq}</p>
+        {company.liquid && (
+          <>
+            <div className="section-label">Noticias recientes</div>
+            <NewsList loading={newsLoading} news={news} />
+          </>
+        )}
         <a className="link-out" href={yfUrl} target="_blank" rel="noopener noreferrer">
           Ver en Yahoo Finance <span className="material-symbols-outlined">arrow_outward</span>
         </a>
