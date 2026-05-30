@@ -1,6 +1,6 @@
 /* ──────────────────────────────────────────────────────────────
    AI Supply Chain Map — Dataset
-   8 capas + ~37 compañías públicas de la cadena del AI Boom.
+   8 capas + ~60 compañías públicas de la cadena del AI Boom.
 
    `basePrice` / `baseChangePct` son baselines de REFERENCIA. En runtime,
    /api/quotes los sobrescribe con datos reales para los tickers con
@@ -131,6 +131,18 @@ export const COMPANIES: Company[] = [
     role: "Mayor proveedor OSAT de ensamblaje y test; empaquetado avanzado.", basePrice: 11.90, baseChangePct: 1.3, marketCap: 25e9 },
   { id: "amkor", name: "Amkor Technology", shortName: "Amkor", ticker: "AMKR", exchange: "NASDAQ", layer: 4, hq: "Tempe, AZ", liquid: true,
     role: "Empaquetado y test; socio clave de empaquetado avanzado en EE.UU.", basePrice: 31.80, baseChangePct: 0.9, marketCap: 7.9e9 },
+  { id: "globalfoundries", name: "GlobalFoundries", shortName: "GlobalFoundries", ticker: "GFS", exchange: "NASDAQ", layer: 4, hq: "Malta, NY", liquid: true,
+    role: "Foundry de nodos maduros/especializados; capacidad doméstica en EE.UU.", basePrice: 40.00, baseChangePct: 0.7, marketCap: 22e9 },
+  { id: "umc", name: "United Microelectronics", shortName: "UMC", ticker: "UMC", exchange: "NYSE", layer: 4, hq: "Hsinchu, Taiwán", liquid: true,
+    role: "Segunda foundry taiwanesa; nodos maduros que descargan a TSMC.", basePrice: 7.20, baseChangePct: 0.9, marketCap: 18e9 },
+  { id: "smic", name: "SMIC", shortName: "SMIC", ticker: "SMICY", exchange: "OTC", layer: 4, hq: "Shanghái, China", liquid: false,
+    role: "Mayor foundry de China; foco de las restricciones de exportación de EE.UU.", basePrice: 11.00, baseChangePct: 1.4, marketCap: 50e9 },
+  { id: "ibiden", name: "Ibiden", shortName: "Ibiden", ticker: "IBIDF", exchange: "OTC", layer: 4, hq: "Ogaki, Japón", liquid: false,
+    role: "Sustratos ABF de gama alta: cuello de botella real del empaquetado de GPUs.", basePrice: 38.00, baseChangePct: 0.6, marketCap: 7e9 },
+  { id: "unimicron", name: "Unimicron", shortName: "Unimicron", ticker: "UMICF", exchange: "OTC", layer: 4, hq: "Taoyuan, Taiwán", liquid: false,
+    role: "Sustratos IC y PCB de alta densidad para empaquetado avanzado.", basePrice: 5.20, baseChangePct: 1.1, marketCap: 6e9 },
+  { id: "jcet", name: "JCET Group", shortName: "JCET", ticker: "JCETF", exchange: "OTC", layer: 4, hq: "Jiangyin, China", liquid: false,
+    role: "Mayor proveedor OSAT de China (ensamblaje y test de semiconductores).", basePrice: 5.50, baseChangePct: 0.8, marketCap: 9e9 },
 
   /* Capa 5 — Memoria HBM */
   { id: "sk-hynix", name: "SK Hynix", shortName: "SK Hynix", ticker: "HXSCL", exchange: "OTC", layer: 5, hq: "Icheon, Corea del Sur", liquid: false,
@@ -149,6 +161,10 @@ export const COMPANIES: Company[] = [
     role: "ODM de servidores IA para los principales hyperscalers.", basePrice: 71.50, baseChangePct: 1.9, marketCap: 31e9 },
   { id: "smci", name: "Super Micro Computer", shortName: "Supermicro", ticker: "SMCI", exchange: "NASDAQ", layer: 6, hq: "San José, CA", liquid: true,
     role: "Servidores IA densos y refrigeración líquida llave en mano.", basePrice: 44.30, baseChangePct: -2.8, marketCap: 26e9 },
+  { id: "broadcom", name: "Broadcom", shortName: "Broadcom", ticker: "AVGO", exchange: "NASDAQ", layer: 6, hq: "Palo Alto, CA", liquid: true,
+    role: "Co-diseña ASICs/XPUs de IA para hyperscalers (TPU de Google) y silicio de red.", basePrice: 235.00, baseChangePct: 2.1, marketCap: 1100e9 },
+  { id: "marvell", name: "Marvell Technology", shortName: "Marvell", ticker: "MRVL", exchange: "NASDAQ", layer: 6, hq: "Santa Clara, CA", liquid: true,
+    role: "Silicio custom y conectividad para aceleradores de hyperscalers (p. ej. Trainium).", basePrice: 110.00, baseChangePct: 2.4, marketCap: 75e9 },
 
   /* Capa 7 — Infraestructura Física */
   { id: "vertiv", name: "Vertiv Holdings", shortName: "Vertiv", ticker: "VRT", exchange: "NYSE", layer: 7, hq: "Westerville, OH", liquid: true,
@@ -161,6 +177,18 @@ export const COMPANIES: Company[] = [
     role: "Electrificación y automatización; transformadores y switchgear.", basePrice: 50.60, baseChangePct: 0.7, marketCap: 110e9 },
   { id: "modine", name: "Modine Manufacturing", shortName: "Modine", ticker: "MOD", exchange: "NYSE", layer: 7, hq: "Racine, WI", liquid: true,
     role: "Soluciones térmicas y refrigeración para data centers IA.", basePrice: 108.90, baseChangePct: 2.4, marketCap: 5.7e9 },
+  { id: "arista", name: "Arista Networks", shortName: "Arista", ticker: "ANET", exchange: "NYSE", layer: 7, hq: "Santa Clara, CA", liquid: true,
+    role: "Switching de alta velocidad para los clústeres de entrenamiento de IA.", basePrice: 105.00, baseChangePct: 2.2, marketCap: 120e9 },
+  { id: "coherent", name: "Coherent", shortName: "Coherent", ticker: "COHR", exchange: "NYSE", layer: 7, hq: "Saxonburg, PA", liquid: true,
+    role: "Transceptores ópticos y láseres: el ancho de banda óptico entre racks IA.", basePrice: 95.00, baseChangePct: 2.6, marketCap: 13e9 },
+  { id: "lumentum", name: "Lumentum", shortName: "Lumentum", ticker: "LITE", exchange: "NASDAQ", layer: 7, hq: "San José, CA", liquid: true,
+    role: "Componentes ópticos para la interconexión de data centers de IA.", basePrice: 90.00, baseChangePct: 2.0, marketCap: 6e9 },
+  { id: "amphenol", name: "Amphenol", shortName: "Amphenol", ticker: "APH", exchange: "NYSE", layer: 7, hq: "Wallingford, CT", liquid: true,
+    role: "Conectores e interconexión de alta velocidad para racks y backplanes.", basePrice: 70.00, baseChangePct: 1.2, marketCap: 85e9 },
+  { id: "mpwr", name: "Monolithic Power Systems", shortName: "MPS", ticker: "MPWR", exchange: "NASDAQ", layer: 7, hq: "Kirkland, WA", liquid: true,
+    role: "Gestión de potencia (VRM) que alimenta GPUs y aceleradores de IA.", basePrice: 800.00, baseChangePct: 1.8, marketCap: 37e9 },
+  { id: "ge-vernova", name: "GE Vernova", shortName: "GE Vernova", ticker: "GEV", exchange: "NYSE", layer: 7, hq: "Cambridge, MA", liquid: true,
+    role: "Generación eléctrica (turbinas de gas/red) para alimentar data centers IA.", basePrice: 540.00, baseChangePct: 2.5, marketCap: 130e9 },
 
   /* Capa 8 — Hyperscalers / Modelos */
   { id: "microsoft", name: "Microsoft", shortName: "Microsoft", ticker: "MSFT", exchange: "NASDAQ", layer: 8, hq: "Redmond, WA", liquid: true,
@@ -171,6 +199,8 @@ export const COMPANIES: Company[] = [
     role: "Google Cloud + TPUs propios: integra diseño de silicio y modelos.", basePrice: 176.30, baseChangePct: 1.5, marketCap: 2150e9 },
   { id: "meta", name: "Meta Platforms", shortName: "Meta", ticker: "META", exchange: "NASDAQ", layer: 8, hq: "Menlo Park, CA", liquid: true,
     role: "Mayor comprador de GPUs para entrenamiento (Llama); capex masivo en IA.", basePrice: 582.70, baseChangePct: 1.7, marketCap: 1520e9 },
+  { id: "oracle", name: "Oracle", shortName: "Oracle", ticker: "ORCL", exchange: "NYSE", layer: 8, hq: "Austin, TX", liquid: true,
+    role: "OCI: expansión agresiva de capacidad de cómputo IA para grandes clientes.", basePrice: 190.00, baseChangePct: 1.0, marketCap: 480e9 },
 ];
 
 /* ── Dependencias entre capas (la columna vertebral 1 → 8) ──────── */
@@ -194,6 +224,20 @@ export const COMPANY_DEPS: [string, string][] = [
   ["meta", "nvidia"],
   ["amazon", "tsmc"],     // chips propios fabricados en TSMC
   ["sk-hynix", "lam"],    // HBM depende de equipos de grabado Lam
+  ["tsmc", "globalwafers"],    // obleas que alimentan a TSMC
+  ["tsmc", "entegris"],        // materiales/filtración de proceso
+  ["tsmc", "linde"],           // gases especiales para la fab
+  ["tsmc", "onto"],            // metrología/inspección de proceso
+  ["tsmc", "besi"],            // hybrid bonding para empaquetado avanzado
+  ["tsmc", "ibiden"],          // sustratos ABF para el empaquetado
+  ["nvidia", "ibiden"],        // sustratos para los paquetes de GPU
+  ["alphabet", "broadcom"],    // TPUs co-diseñadas con Broadcom
+  ["amazon", "marvell"],       // silicio custom (Trainium) con Marvell
+  ["arista", "broadcom"],      // switches Arista sobre silicio Broadcom
+  ["arista", "coherent"],      // transceptores ópticos en los switches
+  ["meta", "arista"],          // fabric de red para clústeres de entrenamiento
+  ["globalfoundries", "asml"], // foundry depende de litografía ASML
+  ["umc", "asml"],             // ídem
 ];
 
 /* ── Generador del grafo (nodes + links) ─────────────────────────── */
@@ -275,4 +319,31 @@ export const COMPANY_DOMAINS: Record<string, string> = {
   "amazon": "amazon.com",
   "alphabet": "google.com",
   "meta": "meta.com",
+  "globalwafers": "globalwafers.com",
+  "siltronic": "siltronic.com",
+  "soitec": "soitec.com",
+  "linde": "linde.com",
+  "air-products": "airproducts.com",
+  "entegris": "entegris.com",
+  "tok": "tok.co.jp",
+  "asm-intl": "asm.com",
+  "besi": "besi.com",
+  "onto": "ontoinnovation.com",
+  "camtek": "camtek.com",
+  "nova": "novami.com",
+  "globalfoundries": "gf.com",
+  "umc": "umc.com",
+  "smic": "smics.com",
+  "ibiden": "ibiden.com",
+  "unimicron": "unimicron.com",
+  "jcet": "jcetglobal.com",
+  "broadcom": "broadcom.com",
+  "marvell": "marvell.com",
+  "arista": "arista.com",
+  "coherent": "coherent.com",
+  "lumentum": "lumentum.com",
+  "amphenol": "amphenol.com",
+  "mpwr": "monolithicpower.com",
+  "ge-vernova": "gevernova.com",
+  "oracle": "oracle.com",
 };
