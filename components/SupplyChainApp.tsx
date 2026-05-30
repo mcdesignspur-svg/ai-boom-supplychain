@@ -12,7 +12,12 @@ import type { Company, GraphNode, Layer, Quote, RiskLevel } from "@/lib/types";
 import type { GraphEngine } from "@/lib/graph-engine";
 import { useQuotes } from "@/lib/use-quotes";
 
-const companyById: Record<string, Company> = Object.fromEntries(COMPANIES.map((c) => [c.id, c]));
+// Companies in the raw dataset have no `type` field (only buildGraph adds it for
+// the D3 engine). The panel/tooltip resolve from here and branch on `type`, so
+// stamp it explicitly — otherwise company panels render empty.
+const companyById: Record<string, Company> = Object.fromEntries(
+  COMPANIES.map((c) => [c.id, { ...c, type: "company" as const }]),
+);
 const layerById: Record<string, Layer> = Object.fromEntries(LAYERS.map((l) => [l.id, l]));
 const layerRiskOf = (n: number): RiskLevel => LAYERS.find((l) => l.layer === n)?.risk ?? "MED";
 
