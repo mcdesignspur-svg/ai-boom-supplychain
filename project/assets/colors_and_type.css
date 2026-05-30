@@ -1,0 +1,289 @@
+/* ──────────────────────────────────────────────────────────────
+   MC DESIGNS — Colors, Type & Core Tokens
+   Source of truth derived from the production site
+   (https://mcdesignspr.com) and its Tailwind config.
+
+   Inter loads from local variable TTFs in /fonts/ (opsz + wght axes).
+   Material Symbols continues to load from Google Fonts.
+   ────────────────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/Inter-VariableFont_opsz_wght.ttf') format('truetype-variations'),
+       url('fonts/Inter-VariableFont_opsz_wght.ttf') format('truetype');
+  font-variation-settings: 'opsz' 14;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+:root {
+  /* ── BRAND ──────────────────────────────────────────── */
+  --mc-primary:              #0056c6;   /* brand blue; ~all CTAs, accents */
+  --mc-primary-hot:          #006df8;   /* deeper blue for hover states */
+  --mc-primary-deep:         #00429c;   /* on-primary-fixed-variant / pressed */
+  --mc-primary-fixed:        #d9e2ff;   /* pill/chip backgrounds */
+  --mc-primary-fixed-dim:    #b0c6ff;   /* inverse-primary */
+  --mc-on-primary-fixed:     #001945;   /* text on pale blue pills */
+
+  /* ── SURFACES (Material-3 inspired light palette) ───── */
+  --mc-surface:                    #f9f9f9;   /* page background */
+  --mc-surface-bright:             #f9f9f9;
+  --mc-surface-container-lowest:   #ffffff;   /* cards on gray sections */
+  --mc-surface-container-low:      #f3f3f3;   /* alternating section bg */
+  --mc-surface-container:          #eeeeee;   /* chips, tech-pills */
+  --mc-surface-container-high:     #e8e8e8;
+  --mc-surface-container-highest:  #e2e2e2;   /* CTA containers */
+  --mc-surface-dim:                #dadada;
+  --mc-surface-variant:            #e2e2e2;
+  --mc-inverse-surface:            #2f3131;
+  --mc-inverse-on-surface:         #f0f1f1;
+
+  /* ── FOREGROUNDS ─────────────────────────────────────── */
+  --mc-on-surface:           #1a1c1c;   /* primary ink */
+  --mc-on-surface-variant:   #424655;   /* secondary ink */
+  --mc-on-primary:           #ffffff;
+  --mc-on-background:        #1a1c1c;
+
+  /* Additional slate scale the footer/nav uses directly */
+  --mc-slate-900: #0f172a;   /* near-black footer heads */
+  --mc-slate-600: #475569;   /* nav link default */
+  --mc-slate-500: #64748b;   /* footer body copy */
+  --mc-slate-400: #94a3b8;   /* tertiary labels */
+  --mc-slate-200: #e2e8f0;   /* footer borders */
+  --mc-slate-100: #f1f5f9;   /* language-toggle pill bg */
+  --mc-slate-50:  #f8fafc;   /* footer bg */
+
+  /* ── OUTLINE / BORDERS ───────────────────────────────── */
+  --mc-outline:          #727787;
+  --mc-outline-variant:  #c2c6d8;
+  --mc-border-subtle:    rgba(15, 23, 42, 0.08);
+
+  /* ── SEMANTIC ────────────────────────────────────────── */
+  --mc-error:            #ba1a1a;
+  --mc-on-error:         #ffffff;
+  --mc-error-container:  #ffdad6;
+  --mc-success:          #16a34a;   /* from in-page quiz ("Recomendación lista") */
+  --mc-success-soft:     #dcfce7;
+  --mc-warning:          #d97706;
+
+  /* Secondary / accent (rarely used but in palette) */
+  --mc-secondary:           #9e4227;
+  --mc-on-secondary:        #ffffff;
+  --mc-tertiary:            #5d5c5b;
+
+  /* ── TYPE ────────────────────────────────────────────── */
+  --mc-font-sans:    'Inter', system-ui, -apple-system, sans-serif;
+  --mc-font-heading: 'Inter', system-ui, sans-serif;   /* same family, black weight */
+  --mc-font-mono:    'JetBrains Mono', ui-monospace, monospace;
+  --mc-font-icons:   'Material Symbols Outlined';
+
+  /* Weights */
+  --mc-weight-light:     300;
+  --mc-weight-regular:   400;
+  --mc-weight-medium:    500;
+  --mc-weight-semibold:  600;
+  --mc-weight-bold:      700;
+  --mc-weight-extrabold: 800;
+  --mc-weight-black:     900;
+
+  /* Type scale — keyed to actual usage on the site */
+  --mc-size-display:   clamp(3rem, 10vw, 7rem);     /* hero h1, 5xl→8xl */
+  --mc-size-h1:        clamp(2.5rem, 6vw, 4.5rem);  /* section hero */
+  --mc-size-h2:        clamp(2rem, 4vw, 3rem);      /* 4xl */
+  --mc-size-h3:        1.5rem;                      /* 2xl */
+  --mc-size-h4:        1.25rem;                     /* xl */
+  --mc-size-body-lg:   1.125rem;
+  --mc-size-body:      1rem;
+  --mc-size-body-sm:   0.875rem;
+  --mc-size-caption:   0.75rem;
+  --mc-size-micro:     0.625rem;                    /* [10px] uppercase labels */
+
+  /* Tracking */
+  --mc-track-tightest: -0.04em;   /* display headlines (tracking-tighter) */
+  --mc-track-tighter:  -0.025em;  /* h2/h3 */
+  --mc-track-tight:    -0.015em;
+  --mc-track-normal:   0;
+  --mc-track-label:    0.1em;     /* uppercase labels */
+  --mc-track-eyebrow:  0.2em;     /* [0.2em] eyebrows above headlines */
+
+  /* Line heights */
+  --mc-leading-display: 0.9;
+  --mc-leading-tight:   1.1;
+  --mc-leading-snug:    1.25;
+  --mc-leading-normal:  1.5;
+  --mc-leading-relaxed: 1.625;
+
+  /* ── RADII ──────────────────────────────────────────── */
+  --mc-radius-xs:   0.25rem;  /*  4px — tech pills */
+  --mc-radius-sm:   0.5rem;   /*  8px — buttons */
+  --mc-radius-md:   0.75rem;  /* 12px — inputs */
+  --mc-radius-lg:   1rem;     /* 16px — cards */
+  --mc-radius-xl:   1.5rem;   /* 24px — feature cards, CTA blocks */
+  --mc-radius-2xl:  2rem;     /* 32px — case-study containers */
+  --mc-radius-3xl:  2.5rem;   /* 40px — final-CTA containers */
+  --mc-radius-full: 9999px;   /* pills, chips, language toggle */
+
+  /* ── SPACING ────────────────────────────────────────── */
+  --mc-space-0:  0;
+  --mc-space-1:  0.25rem;
+  --mc-space-2:  0.5rem;
+  --mc-space-3:  0.75rem;
+  --mc-space-4:  1rem;
+  --mc-space-5:  1.25rem;
+  --mc-space-6:  1.5rem;
+  --mc-space-8:  2rem;
+  --mc-space-10: 2.5rem;
+  --mc-space-12: 3rem;
+  --mc-space-16: 4rem;
+  --mc-space-20: 5rem;
+  --mc-space-24: 6rem;
+  --mc-space-32: 8rem;   /* py-32 — signature section vertical rhythm */
+
+  /* Content width cap — the site uses max-w-7xl (1280px) everywhere */
+  --mc-maxw-content: 80rem;   /* 1280px */
+  --mc-maxw-prose:   42rem;   /* 672px  (~ max-w-2xl, for paragraph blocks) */
+
+  /* ── SHADOWS ────────────────────────────────────────── */
+  --mc-shadow-card:    0 10px 30px rgba(0, 0, 0, 0.06);
+  --mc-shadow-card-hv: 0 20px 60px rgba(0, 86, 198, 0.08);
+  --mc-shadow-cta:     0 12px 40px rgba(0, 86, 198, 0.25);   /* shadow-primary/25 on solid blue CTAs */
+  --mc-shadow-inset:   inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  /* Soft radial glow used behind CTA containers */
+  --mc-glow-primary:   0 0 120px rgba(0, 86, 198, 0.15);
+
+  /* ── EFFECTS ────────────────────────────────────────── */
+  --mc-blur-nav:       16px;   /* sticky nav backdrop-blur-xl */
+  --mc-blur-glass:     16px;   /* .glass-module */
+  --mc-nav-bg:         rgba(255, 255, 255, 0.6);
+  --mc-glass-bg:       rgba(255, 255, 255, 0.4);
+
+  /* Grid overlay — fixed background on most pages */
+  --mc-grid-color:     rgba(0, 86, 198, 0.03);   /* #0056c608 */
+  --mc-grid-size:      40px;
+
+  /* Motion */
+  --mc-ease-out:       cubic-bezier(0.22, 1, 0.36, 1);
+  --mc-ease-std:       cubic-bezier(0.4, 0, 0.2, 1);
+  --mc-dur-fast:       150ms;
+  --mc-dur-base:       300ms;
+  --mc-dur-slow:       500ms;
+  --mc-dur-stagger:    700ms;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   SEMANTIC TYPE ROLES
+   Classes consumers can apply directly — mirror the actual site.
+   ────────────────────────────────────────────────────────────── */
+
+html, body {
+  font-family: var(--mc-font-sans);
+  color: var(--mc-on-surface);
+  background: var(--mc-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--mc-primary-fixed);
+  color: var(--mc-on-primary-fixed);
+}
+
+.mc-display,
+h1.mc-hero {
+  font-family: var(--mc-font-heading);
+  font-weight: var(--mc-weight-black);
+  font-size: var(--mc-size-display);
+  letter-spacing: var(--mc-track-tightest);
+  line-height: var(--mc-leading-display);
+  color: var(--mc-on-surface);
+}
+
+.mc-h1 {
+  font-weight: var(--mc-weight-black);
+  font-size: var(--mc-size-h1);
+  letter-spacing: var(--mc-track-tightest);
+  line-height: var(--mc-leading-tight);
+}
+
+.mc-h2 {
+  font-weight: var(--mc-weight-bold);
+  font-size: var(--mc-size-h2);
+  letter-spacing: var(--mc-track-tighter);
+  line-height: var(--mc-leading-tight);
+}
+
+.mc-h3 {
+  font-weight: var(--mc-weight-bold);
+  font-size: var(--mc-size-h3);
+  letter-spacing: var(--mc-track-tight);
+  line-height: var(--mc-leading-snug);
+}
+
+.mc-h4 {
+  font-weight: var(--mc-weight-bold);
+  font-size: var(--mc-size-h4);
+  letter-spacing: var(--mc-track-tight);
+}
+
+/* Eyebrow label — sits above every section headline.
+   `EL PUNTO DE PARTIDA`, `SERVICIOS`, `EL PROCESO` — widely used. */
+.mc-eyebrow {
+  font-size: var(--mc-size-caption);
+  font-weight: var(--mc-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--mc-track-eyebrow);
+  color: var(--mc-primary);
+}
+
+/* Tagline pill — small badge used above hero headlines. */
+.mc-tagline-pill {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: var(--mc-primary-fixed);
+  color: var(--mc-on-primary-fixed);
+  font-size: var(--mc-size-micro);
+  font-weight: var(--mc-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--mc-track-eyebrow);
+  border-radius: var(--mc-radius-full);
+}
+
+.mc-lead {
+  font-size: var(--mc-size-body-lg);
+  font-weight: var(--mc-weight-medium);
+  line-height: var(--mc-leading-relaxed);
+  color: var(--mc-on-surface-variant);
+}
+
+.mc-body {
+  font-size: var(--mc-size-body);
+  line-height: var(--mc-leading-relaxed);
+  color: var(--mc-on-surface-variant);
+}
+
+.mc-small {
+  font-size: var(--mc-size-body-sm);
+  color: var(--mc-on-surface-variant);
+}
+
+/* Label text — uppercase microtype on buttons + nav CTAs. */
+.mc-label {
+  font-size: var(--mc-size-caption);
+  font-weight: var(--mc-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--mc-track-label);
+}
+
+.mc-mono {
+  font-family: var(--mc-font-mono);
+  font-size: var(--mc-size-body-sm);
+}
+
+/* Material Symbols — match font-variation the site uses */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
