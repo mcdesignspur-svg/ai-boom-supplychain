@@ -54,3 +54,51 @@ The original prototype's split (`data → graph → ui`) is preserved as a clean
 ## Responsive
 
 Desktop is hover-driven; touch is tap-to-open. On mobile the detail panel becomes a bottom sheet, the toolbar scrolls horizontally, hover tooltips are skipped, and the layout uses `100dvh` with `viewport-fit=cover` for notched devices.
+
+## API & MCP (for AI agents)
+
+The supply-chain data is exposed two ways, both gated by an API key. Set valid keys in the `API_KEYS` env var (comma-separated); per-key rate limit via `API_RATE_LIMIT` (default 120/min). Send the key as `Authorization: Bearer <key>` or `x-api-key: <key>`.
+
+### REST API (`/api/v1`)
+
+Universal — any agent/framework can call it. Discovery endpoints are open (no key):
+
+- `GET /api/v1` — index of endpoints
+- `GET /api/v1/openapi.json` — OpenAPI 3.1 spec (import as tools)
+
+Data endpoints (key required):
+
+| Endpoint | Returns |
+|---|---|
+| `GET /api/v1/graph` | layers + companies + dependency edges |
+| `GET /api/v1/companies?layer=&risk=&liquid=&live=` | companies (optionally with live quotes) |
+| `GET /api/v1/companies/{idOrTicker}?live=` | one company |
+| `GET /api/v1/layers` · `/layers/{1-8}` | layers + chokepoints |
+| `GET /api/v1/chokepoints` | highest-risk bottlenecks |
+| `GET /api/v1/dependencies?id={idOrTicker}` | who depends on / is depended on |
+| `GET /api/v1/quotes` · `/news?symbol=` | live quotes / recent headlines |
+
+```bash
+curl -H "Authorization: Bearer $API_KEY" https://<host>/api/v1/chokepoints
+```
+
+### MCP server (`/api/mcp`)
+
+Agent-native (Claude Desktop/Code, Cursor, …) over **streamable HTTP**, built with [`mcp-handler`](https://www.npmjs.com/package/mcp-handler). Same auth. Tools: `get_supply_chain_graph`, `list_companies`, `get_company`, `list_layers`, `get_layer`, `find_chokepoints`, `get_dependencies`, `get_quotes`, `get_company_news`.
+
+Add to an MCP client config:
+
+```json
+{
+  "mcpServers": {
+    "ai-supply-chain": {
+      "url": "https://<host>/api/mcp",
+      "headers": { "Authorization": "Bearer <API_KEY>" }
+    }
+  }
+}
+```
+
+For clients that only speak stdio, bridge with `npx mcp-remote https://<host>/api/mcp --header "Authorization: Bearer <API_KEY>"`.
+
+Both the REST routes and the MCP tools call one shared service layer (`lib/api-service.ts`), so they always return identical data.
