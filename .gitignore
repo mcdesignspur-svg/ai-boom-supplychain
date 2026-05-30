@@ -27,3 +27,6 @@ yarn-error.log*
 
 # certs
 *.pem
+
+# stray local test scripts
+_v*.mjs

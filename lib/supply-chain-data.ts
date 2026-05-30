@@ -51,8 +51,8 @@ export const LAYERS: Layer[] = [
   {
     id: "layer-7", type: "layer", layer: 7,
     name: "Infraestructura Física", shortName: "Infraestructura", risk: "HIGH",
-    description: "Energía, distribución eléctrica y refrigeración. Los data centers IA consumen tanta potencia que la red eléctrica se ha convertido en un límite físico real.",
-    bottleneck: "La potencia y la refrigeración son el nuevo cuello de botella. Vertiv, Eaton y Schneider no dan abasto con el capex que están desplegando los hyperscalers.",
+    description: "Energía, refrigeración, networking y óptica del data center. Los racks IA consumen tanta potencia —y mueven tantos datos— que la red eléctrica y la interconexión se han vuelto límites físicos reales.",
+    bottleneck: "La potencia, la refrigeración y el ancho de banda óptico son el nuevo cuello de botella. Vertiv, Eaton y Schneider no dan abasto con el capex, y el switching/óptica (Arista, Coherent) se vuelve crítico para conectar los clústeres.",
   },
   {
     id: "layer-8", type: "layer", layer: 8,
@@ -73,6 +73,20 @@ export const COMPANIES: Company[] = [
     role: "Junto a Shin-Etsu controla ~50% del mercado de obleas de 300mm.", basePrice: 12.85, baseChangePct: -0.9, marketCap: 12e9 },
   { id: "wacker", name: "Wacker Chemie", shortName: "Wacker", ticker: "WKCMF", exchange: "OTC", layer: 1, hq: "Múnich, Alemania", liquid: false,
     role: "Polisilicio hiperpuro: la materia prima base de toda oblea.", basePrice: 84.20, baseChangePct: 1.2, marketCap: 5.4e9 },
+  { id: "globalwafers", name: "GlobalWafers", shortName: "GlobalWafers", ticker: "GWAFF", exchange: "OTC", layer: 1, hq: "Hsinchu, Taiwán", liquid: false,
+    role: "Top-5 mundial de obleas de 300mm; cierra el oligopolio de obleas con Shin-Etsu y SUMCO.", basePrice: 13.00, baseChangePct: 0.5, marketCap: 7e9 },
+  { id: "siltronic", name: "Siltronic AG", shortName: "Siltronic", ticker: "WAFGF", exchange: "OTC", layer: 1, hq: "Múnich, Alemania", liquid: false,
+    role: "Productor europeo de obleas de silicio de grado semiconductor (top-5 mundial).", basePrice: 72.00, baseChangePct: -0.4, marketCap: 3e9 },
+  { id: "soitec", name: "Soitec", shortName: "Soitec", ticker: "SOIYY", exchange: "OTC", layer: 1, hq: "Bernin, Francia", liquid: false,
+    role: "Obleas de ingeniería SOI/FD-SOI; sexto gran fabricante de sustratos según CSIS.", basePrice: 45.00, baseChangePct: 0.8, marketCap: 2.5e9 },
+  { id: "linde", name: "Linde plc", shortName: "Linde", ticker: "LIN", exchange: "NASDAQ", layer: 1, hq: "Woking, RU", liquid: true,
+    role: "Mayor proveedor de gases industriales y especiales para fabs (chokepoint silencioso).", basePrice: 470.00, baseChangePct: 0.6, marketCap: 210e9 },
+  { id: "air-products", name: "Air Products", shortName: "Air Products", ticker: "APD", exchange: "NYSE", layer: 1, hq: "Allentown, PA", liquid: true,
+    role: "Gases de proceso ultrapuros para la fabricación de semiconductores.", basePrice: 290.00, baseChangePct: 0.5, marketCap: 63e9 },
+  { id: "entegris", name: "Entegris", shortName: "Entegris", ticker: "ENTG", exchange: "NASDAQ", layer: 1, hq: "Billerica, MA", liquid: true,
+    role: "Materiales avanzados, filtración y slurries CMP: insumos críticos de cada oblea.", basePrice: 95.00, baseChangePct: 1.0, marketCap: 16e9 },
+  { id: "tok", name: "Tokyo Ohka Kogyo", shortName: "TOK", ticker: "TOKYF", exchange: "OTC", layer: 1, hq: "Kawasaki, Japón", liquid: false,
+    role: "Líder mundial en fotorresinas (photoresist), insumo clave de la litografía.", basePrice: 28.00, baseChangePct: 0.3, marketCap: 7e9 },
 
   /* Capa 2 — Software EDA / IP */
   { id: "synopsys", name: "Synopsys", shortName: "Synopsys", ticker: "SNPS", exchange: "NASDAQ", layer: 2, hq: "Sunnyvale, CA", liquid: true,
@@ -95,6 +109,16 @@ export const COMPANIES: Company[] = [
     role: "Inspección y metrología: control de defectos en cada oblea.", basePrice: 821.70, baseChangePct: 0.8, marketCap: 110e9 },
   { id: "tokyo-electron", name: "Tokyo Electron", shortName: "TEL", ticker: "TOELY", exchange: "OTC", layer: 3, hq: "Tokio, Japón", liquid: false,
     role: "Equipos de recubrimiento, grabado y limpieza: pilar del clúster japonés.", basePrice: 111.20, baseChangePct: -0.5, marketCap: 115e9 },
+  { id: "asm-intl", name: "ASM International", shortName: "ASM Intl", ticker: "ASMIY", exchange: "OTC", layer: 3, hq: "Almere, P. Bajos", liquid: false,
+    role: "Líder en deposición de capa atómica (ALD), paso crítico en nodos avanzados.", basePrice: 130.00, baseChangePct: 1.2, marketCap: 26e9 },
+  { id: "besi", name: "BE Semiconductor (BESI)", shortName: "BESI", ticker: "BESIY", exchange: "OTC", layer: 3, hq: "Duiven, P. Bajos", liquid: false,
+    role: "Equipos de hybrid bonding: clave para el empaquetado avanzado de chiplets/HBM.", basePrice: 125.00, baseChangePct: 1.5, marketCap: 9e9 },
+  { id: "onto", name: "Onto Innovation", shortName: "Onto", ticker: "ONTO", exchange: "NYSE", layer: 3, hq: "Wilmington, MA", liquid: true,
+    role: "Metrología, inspección y control de proceso para obleas y empaquetado avanzado.", basePrice: 170.00, baseChangePct: 1.8, marketCap: 9e9 },
+  { id: "camtek", name: "Camtek", shortName: "Camtek", ticker: "CAMT", exchange: "NASDAQ", layer: 3, hq: "Migdal HaEmek, Israel", liquid: true,
+    role: "Inspección y metrología enfocada en empaquetado avanzado (HBM/CoWoS).", basePrice: 90.00, baseChangePct: 1.3, marketCap: 4e9 },
+  { id: "nova", name: "Nova Ltd", shortName: "Nova", ticker: "NVMI", exchange: "NASDAQ", layer: 3, hq: "Rehovot, Israel", liquid: true,
+    role: "Metrología de proceso (dimensional y de materiales) en nodos avanzados.", basePrice: 250.00, baseChangePct: 1.6, marketCap: 8e9 },
 
   /* Capa 4 — Fundición y Empaquetado */
   { id: "tsmc", name: "Taiwan Semiconductor Mfg.", shortName: "TSMC", ticker: "TSM", exchange: "NYSE", layer: 4, hq: "Hsinchu, Taiwán", liquid: true,
